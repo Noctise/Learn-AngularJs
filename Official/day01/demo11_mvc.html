@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--根标签 调用 指定的模块-->
+<html ng-app="myModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<!--当加载div的时候，执行myCtrl控制器对应的处理函数-->
+<div ng-controller="myCtrl">
+  <!-- 将数据显示在视图中-->
+  <p>{{num}}</p>
+</div>
+
+<script>
+  // 创建模块
+  var app = angular.module('myModule',['ng']);
+
+  //创建控制器
+  app.controller('myCtrl', function ($scope) {
+    //该函数在控制器被调用时 将自动触发
+    console.log('myCtrl func is called');
+
+    //在控制器中 定义变量和方法（实现数据的增删改查）
+
+    //定义数据
+    //$scope是作用域对象
+    $scope.num = 100;
+
+  });
+
+
+</script>
+
+
+</body>
+</html>

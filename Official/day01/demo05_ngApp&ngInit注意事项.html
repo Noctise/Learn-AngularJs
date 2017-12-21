@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<div >
+  <p ng-init="num=10;price=20">
+    {{num+" price is "+price}}
+  </p>
+</div>
+
+<div >
+  <!-- 在程序启动时，有可能会出现双花扩本身，拿到数据之后又显示正确的数据，这个闪烁的过程-->
+  <h1 ng-init="count=1000">{{count}}</h1>
+  <!-- ngBind解决闪烁的问题：如果html不识别某些属性是不会理会的-->
+  <h1 ng-bind="500+500"></h1>
+</div>
+
+
+
+
+</body>
+</html>

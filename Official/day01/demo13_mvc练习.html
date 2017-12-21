@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+
+  <div
+    ng-repeat="dish in dishList track by $index">
+    <img ng-src="img/{{dish.imgUrl}}" alt=""/>
+    <h2>{{dish.name}}</h2>
+    <p>{{dish.price}}</p>
+  </div>
+
+  <button ng-click="loadMore()">加载更多</button>
+
+</div>
+
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+
+    //初始化对象数组
+    $scope.dishList = [
+      {imgUrl:'1.jpg',name:'鱼香肉丝',price:20},
+      {imgUrl:'2.jpg',name:'京酱肉丝',price:22},
+      {imgUrl:'3.jpg',name:'肉夹馍',price:21},
+    ];
+
+    //定义处理函数：实现针对列表的添加操作
+    $scope.loadMore = function () {
+      //如何实现？？？
+      //往对象数组中 插入一条对象数据
+      $scope.dishList.push(
+        {imgUrl:"4.jpg",name:'热干面',price:Math.floor(Math.random()*20)}
+      )
+
+    }
+
+
+  });
+
+
+</script>
+
+</body>
+</html>

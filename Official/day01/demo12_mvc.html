@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--模块的调用-->
+<html ng-app="userModule">
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+<!--调用-->
+<div ng-controller="userCtrl">
+  <h1>{{count}}</h1>
+  <button ng-click="handleClick()">
+    clickMe
+  </button>
+</div>
+
+
+<script>
+
+  //创建模块
+  var app = angular.module('userModule',['ng']);
+
+  //创建控制器
+  app.controller('userCtrl', function ($scope) {
+    console.log('userCtrl func is called ');
+
+    $scope.count = 0;
+
+    $scope.handleClick = function () {
+      //数据的自增操作
+      $scope.count++;
+    }
+    
+  });
+
+</script>
+
+</body>
+</html>

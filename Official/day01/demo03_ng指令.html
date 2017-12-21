@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="js/angular.js"></script>
+  <title></title>
+</head>
+<body>
+
+<!-- alt+f2 -->
+<h2 ng-init="name='zhangSan'">
+  {{name}}
+</h2>
+
+<ul ng-init="list=[100,200,300]">
+  <li>{{list[0]}}</li>
+  <li>{{list[1]}}</li>
+  <li>{{list[2]}}</li>
+</ul>
+
+<h1>{{list[0]}}</h1>
+
+<div ng-init="car={name:'WEY',price:20}">
+  <p>{{car.name}}</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<span
+  ng-init="list=['michael','john','finch'];car={name:'BMW',price:20}">
+
+</span>
+
+<ul>
+  <li>{{list[0]}}</li>
+  <li>{{list[1]}}</li>
+  <li>{{list[2]}}</li>
+</ul>
+<!--第二种写法借助于指令ngRepeat-->
+<ul>
+  <li ng-repeat="tmp in list">
+    {{tmp}}
+  </li>
+</ul>
+
+<!--通过ngRepeat来遍历对象-->
+<div>
+  <p ng-repeat="tmp in car">
+    {{tmp}}
+  </p>
+</div>
+
+<!--ngRepeat第二种写法：   -->
+<div>
+  <p ng-repeat="(key,value) in list">
+    {{"key is "+key+" value is "+value}}
+  </p>
+</div>
+
+<ul ng-init="myList=[100,200,300,200]">
+  <li
+    ng-repeat="tmp in myList track by $index">
+    {{tmp+" $index is "+$index}}
+  </li>
+</ul>
+
+
+
+
+</body>
+</html>

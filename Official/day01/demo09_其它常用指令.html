@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body ng-init="imgUrl='1.jpg'">
+
+<!--<p ng-bind="imgUrl"></p>-->
+
+<img ng-src="img/{{imgUrl}}" alt=""/>
+
+<span ng-init="hasMore=true"></span>
+
+<!--ngShow="表达式" 表达式结果为真，就显示，为假就隐藏-->
+<button ng-show="hasMore">加载更多</button>
+<p ng-show="!hasMore">没有更多数据可以加载了</p>
+
+<!--ngHide="表达式" 表达式结果为真，就隐藏，为假就显示-->
+
+<span ng-init="isAgree=false"></span>
+<button ng-disabled="!isAgree">
+  clickMe
+</button>
+
+<!-- ngChecked 复选框  ngClass ngStyle -->
+
+
+
+</body>
+</html>
