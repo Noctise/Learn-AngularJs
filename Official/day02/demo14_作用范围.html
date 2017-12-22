@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+<!--调用第一个控制器-->
+<div ng-controller="myCtrl01">
+  <p>{{num}}</p>
+  <p>{{"myCtrl01 name is "+name}}</p>
+</div>
+
+<!--调用第二个控制器-->
+<div ng-controller="myCtrl02">
+  <p>{{num}}</p>
+  <p>{{"myCtrl02 name is "+name}}</p>
+
+  <!-- 将myCtrl03嵌套在了myCtrl02中-->
+  <div ng-controller="myCtrl03">
+    <p>{{"myCtrl03 age is "+age}}</p>
+  </div>
+
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  //控制器 myCtrl01
+  app.controller(
+    'myCtrl01',
+    function ($scope, $rootScope) {
+      $scope.num = 10;
+      console.log($scope);
+      console.log($rootScope);
+      $rootScope.name = 'Tarena';
+    });
+
+  //控制器 myCtrl02
+  app.controller('myCtrl02', function ($scope) {
+    console.log($scope);
+    $scope.age = 20;
+  });
+
+  //控制器 myCtrl03
+  app.controller('myCtrl03', function ($scope) {
+
+  })
+
+</script>
+
+
+</body>
+</html>

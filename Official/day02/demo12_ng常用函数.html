@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl"></div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+    //json格式的反序列化
+    var jsonStr = '{"name":"zhangsan","age":20}';
+    var student = angular.fromJson(jsonStr);
+    console.log(student);
+
+    //将对象或者数组 序列化 json格式的字符串
+    var obj = {price:20,count:100};
+    var productStr = angular.toJson(obj);
+    console.log(productStr);
+
+    //大小写转换
+    var name = 'Michael';
+    console.log(angular.uppercase(name));
+
+    //集合的操作 forEach
+    var list = [100,200,300,400];
+    angular.forEach(list, function (value,key) {
+      console.log(
+        'key is '+key+" value is "+value);
+    });
+
+  });
+</script>
+
+
+</body>
+</html>

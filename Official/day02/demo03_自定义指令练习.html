@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+
+<div ng-controller="myCtrl">
+
+</div>
+
+<div ts-directive ts-age="20"></div>
+
+<script>
+
+  var app = angular.module('myApp', ['ng']);
+
+  //实现自定义指令并传参显示出来
+  app.directive('tsDirective', function () {
+    return {
+      //指令相关的设置
+      template:'<p>{{tsAge}}</p>',
+      scope:{
+        tsAge:'@'
+      }
+    }
+  })
+
+
+  app.controller('myCtrl', function () {
+
+  });
+
+</script>
+
+</body>
+</html>

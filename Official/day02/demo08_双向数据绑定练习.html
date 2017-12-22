@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  
+  <select ng-model="userFlower">
+    <option value="1.jpg">郁金香</option>
+    <option value="2.jpg">水仙花</option>
+    <option value="3.jpg">月季花</option>
+  </select>
+
+  <img ng-src="img/{{userFlower}}" alt=""/>
+
+  <br/>
+  <select
+    ng-model="city"
+    ng-options="city.name for city in cityList ">
+  </select>
+</div>
+<script>
+  var app = angular.module('myApp', ['ng']);
+  app.controller('myCtrl', function ($scope) {
+    $scope.userFlower = '1.jpg';
+    $scope.cityList = [
+      {name:'北京',value:'bj'},
+      {name:'上海',value:'sh'},
+      {name:'广州',value:'gz'},
+      {name:'深圳',value:'sz'}]
+    $scope.city = $scope.cityList[0];
+
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/angular.js"></script>
+    <title>Title</title>
+    <style></style>
+</head>
+<body>
+<div ng-controller="myCtrl">
+    <button ng-click="addToCart()">addToCart</button>
+    <table>
+        <thead>
+        <tr>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小计</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in cart">
+            <td>{{product.price}}</td>
+            <td>{{product.count}}</td>
+            <td>{{product.price*product.count}}</td>
+            <td>
+                <button ng-click="deleteFromCart($index)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var app = angular.module('myApp',['ng']);
+
+    app.controller('myCtrl',function ($scope) {
+        $scope.cart=[
+            {price:1,count:5},
+            {price:2,count:8},
+            {price:3,count:10}
+        ];
+        $scope.addToCart=function () {
+            $scope.cart.push({
+                price:10,
+                count:Math.floor(Math.random()*10)
+            });
+        };
+        $scope.deleteFromCart=function (index) {
+            console.log(
+                'the number of '+index
+            );
+            $scope.cart.splice(index,1);
+        }
+    });
+</script>
+</body>
+</html>

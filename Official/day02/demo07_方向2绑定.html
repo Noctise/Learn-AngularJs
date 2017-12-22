@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+
+  <!-- ngModel不仅仅可以用在input，还可以用在textarea，select，，，-->
+
+  <select ng-model="color">
+    <option value="r">red</option>
+    <option value="g">green</option>
+    <option value="b">blue</option>
+  </select>
+
+  <textarea ng-model="msg"></textarea>
+
+
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+    $scope.color = 'r';
+    //对于color做了监听
+    $scope.$watch('color', function () {
+      console.log($scope.color);
+    });
+
+    $scope.$watch('msg', function () {
+      console.log($scope.msg);
+    })
+
+  });
+</script>
+
+
+</body>
+</html>

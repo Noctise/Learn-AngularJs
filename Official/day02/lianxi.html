@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--调用自定义模块-->
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/angular.js"></script>
+    <title></title>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+    <button ng-click="addToCart()">添加</button>
+    <table>
+        <thead>
+        <tr>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小计</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 通过ngRepeat将数组中的内容渲染到每一行中-->
+        <tr ng-repeat="product in cart">
+            <td>{{product.price}}</td>
+            <td>{{product.count}}</td>
+            <td>{{product.price*product.count}}</td>
+            <td>
+                <button
+                        ng-click="deleteFromCart($index)">
+                    删除
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- ngInit -->
+<script>
+    //创建模块
+    var app = angular.module('myApp', ['ng']);
+    //控制器的创建和使用
+    app.controller('myCtrl', function ($scope) {
+        //初始化的数据 对象数组
+        $scope.cart = [
+            {price: 1, count: 5},
+            {price: 2, count: 8},
+            {price: 3, count: 10}
+        ];
+
+        //添加到购物车的方法
+        $scope.addToCart = function () {
+            //往对象数组插入一条数据
+            $scope.cart.push(
+                {
+                    price: 10,
+                    count: Math.floor(Math.random() * 10)
+                });
+        };
+
+        //从购物车中删除数据的方法
+        $scope.deleteFromCart = function (index) {
+            console.log(
+                '当前元素时数组中的第' + index + "个");
+            $scope.cart.splice(index, 1);
+        }
+
+
+    });
+
+</script>
+
+</body>
+</html>

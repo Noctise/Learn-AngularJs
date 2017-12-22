@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl01">
+
+  <button ng-click="sendToChild()">
+    向子控制器传值
+  </button>
+  <p>{{"儿子的回话："+msgFromSon}}</p>
+  <hr/>
+  <div ng-controller="myCtrl02">
+    <h1>{{"接收到的数据为"+msgFromFather}}</h1>
+    <button ng-click="sendToFather()">
+      向父控制器传值
+    </button>
+  </div>
+
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl01', function ($scope) {
+    //向子对象传值
+    $scope.sendToChild = function () {
+      $scope.$broadcast(
+        'fromFather',
+        '小子 你在干嘛'
+      );
+    }
+
+    //绑定一个事件，用来接收子对象带来的参数
+    $scope.$on('fromSon', function (event,data) {
+      console.log(data);
+      $scope.msgFromSon = data;
+    });
+
+  });
+  app.controller('myCtrl02', function ($scope) {
+
+    //绑定一个事件，是用来接收父级对象传值的
+    $scope.$on(
+      'fromFather',
+      function (event, data) {
+        console.log(data);
+        $scope.msgFromFather = data;
+      })
+
+    //定义方法，用来向父控制器传值
+    $scope.sendToFather = function () {
+      //触发事件
+      $scope.$emit('fromSon','我们正在刻苦的学习');
+    }
+
+  });
+</script>
+
+
+</body>
+</html>

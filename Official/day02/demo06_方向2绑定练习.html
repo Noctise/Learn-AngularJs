@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+
+  <input type="checkbox" ng-model="isAgree"/> 是否同意本站协议
+  <br/>
+  <button ng-disabled="!isAgree">注册</button>
+
+  <br/>
+  <input type="text" ng-model="myAddress"/>
+
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+    console.log('ok');
+
+    $scope.myAddress = "北京 海淀 万寿路";
+
+    //如果要查看对应的值的变化，可以通过$watch
+/*    $scope.$watch('isAgree', function () {
+      console.log($scope.isAgree);
+    })*/
+  });
+</script>
+
+
+</body>
+</html>

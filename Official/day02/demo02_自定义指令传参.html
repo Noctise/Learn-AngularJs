@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="myCtrl">
+  <!--在调用指令时 传递参数-->
+  <ts-hello test-name="参数"></ts-hello>
+</div>
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.directive('tsHello', function () {
+    return {
+      template: "<h1>{{testName}}</h1>",
+      scope:{
+        // @ 指定要从调用指令的属性中 找到test-name对应的值 赋值给testName
+        testName:'@'
+      }
+    }
+  })
+
+
+  app.controller('myCtrl', function () {
+
+  })
+
+</script>
+
+
+</body>
+</html>

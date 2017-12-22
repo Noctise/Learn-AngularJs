@@ -1,0 +1,171 @@
+一、自定义指令
+
+module/controller/directive/serivce/filter
+
+基础知识：
+	1、指令的创建方法：
+	var app = angular.module();
+	app.directive('指令的名称',func);
+
+	2、指令的使用方法：
+	涉及到命名规则，指令本身命名要符合驼峰式写法，一般有两部分构成，前缀（项目或者模块的简写）和后缀（指令的作用），在使用时 要遵循烤串式
+	案例：
+	app.directive('tsHello',func)
+	ts-hello
+	3、指令的其它特性
+	restrict：‘EC’
+		E:element 
+		A:attribute
+		C:class
+		M:comment
+	replace:true/false
+		将调用指令的元素替换掉
+		div ts-hello 
+	template：指定模板内容
+	scope:存储数据
+
+	4、自定义指令传参
+		①指令内部设置允许接收参数
+			scope：对象
+		app.directive('tsHello', function () {
+			return {
+				template: "<h1>{{testName}}</h1>",
+				scope:{
+					// @ 指定要从调用指令的属性中 找到test-name对应的值 赋值给testName
+					testName:'@'
+				}
+			}
+  })
+		②调用指令时 把参数发送过去
+		<ts-hello test-name="参数"></ts-hello>
+
+练习：创建自定义指令tsDirective,传入ts-age='20';
+并通过调用指令显示在p标签
+
+二、双向数据绑定
+
+方向1: 将数据 绑定 视图
+	绑定的方式：
+			①ng中常用指令 ngRepeat.. 
+			②双花括号
+方向2：将视图中用户操作的结果 绑定 数据
+	1、绑定的方式：
+			ngModel
+			用法： <input	ng-model='变量名称'></input>
+			作用：将每一次的输入都保存在指定的变量中
+	2、属于$scope的$watch，可以用来监听数据的变化
+			$scope.$watch(
+				'keyword',
+				function(newValue,oldValue){
+
+				})
+
+指令:ngOptions 动态的生成多个option
+	select ng-options="color.name for color in array"
+
+
+
+三、过滤器、函数
+
+1、过滤器的概述
+过滤器：对数据进行筛选、过滤、格式化
+
+过滤器使用语法：是支持多重过滤的。
+
+	{{表达式 | 过滤器:参数 | 过滤器}}
+
+2、常用过滤器
+currency 货币样式
+date 日期
+orderBy 排序（降序或者升序）
+limitTo 限定显示的元素的个数（数组）
+uppercase/lowercase 大小写的转换
+
+练习：
+
+	实现一个学生数组（5条），每一个学生都有:name age sex score
+	处理：按成绩前三名显示在table中
+
+	排序 limitTo
+
+3、自定义过滤器
+自定义过滤器的本质 就是定义一个方法（有参数和右返回值）
+var app = angular.module()
+app.filter('过滤器名称'，function(){
+	return function(inputValue,arg1。。){
+		return '处理后的数据'
+	}
+});
+
+
+4、常用函数
+angular.toJson/fromJson: 
+	json格式的序列化（将一个对象或者数组序列化为json格式的字符串）、反序列化（..）
+angular.forEach(集合名称，function(value,key){})
+angular.uppercase/lowercase
+
+
+四、服务
+服务的本质在ng中 就是一个对象，可以提供数据和方法。
+
+服务有很多:
+$location/$http/$scope/$rootScope/$window/$interval/$timeout...
+
+服务的用法：
+	只需要在对应的ng对象中注入对应的服务，可以在ng对象中调用服务中封装好的方法和数据了
+
+	app.controller('myCtrl',function($location,$scope){
+		//调用服务中封装好的方法、数据
+	})
+
+
+面试题：$scope和$rootScope的关系
+
+①每一个控制器对应的有一个$scope,每一个$scope都是相互隔离的
+②$scope的id是根据控制器的加载顺序是递增的，有共同的父元素$rootScope
+
+
+
+控制器之间数据如何传输？
+①可以把要共享的数据或者方法 放在$rootScope
+
+在子对象中 可以 读取 父对象中的数据或者方法
+
+②借助于控制器之间的嵌套
+div	ng-controller='myCtrl02'
+
+	div	ng-controller='myCtrl03'
+
+③借助于事件
+事件的绑定：
+	$scope.$on('eventName',function(event,data){
+	})
+事件的触发
+	//由父向子 触发
+	$scope.$broadcast('eventName',data);
+	//由子向父 触发
+	$scope.$emit('eventName',data)
+
+
+
+每日一练：
+全选或者取消全选
+
+使用ng的双向数据绑定
+
+①构造对象数组
+
+②显示出来
+
+③实现部分选中
+
+逻辑与运算
+
+上边两个复选框选中，全选就被选中
+上边两个复选框只要有一个没被选中，全选就被取消
+
+④实现全选复选框
+
+点击全选，上边两个复选框被选中
+取消全选，上边两个复选框取消选中
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="js/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <p>{{price}}</p>
+  <!-- 基本用法-->
+  <p>{{price | currency}}</p>
+  <!-- 接收参数-->
+  <p>{{price | currency:'￥'}}</p>
+
+  <!-- 日期过滤器-->
+  <p>{{nowDate}}</p>
+  <p>{{nowDate | date:'yy-MM-dd'}}</p>
+
+  <!-- 排序过滤器-->
+  <ul>
+    <li
+      ng-repeat="stu in stuList | orderBy:'age':true">
+      {{"age is "+stu.age+" name is "+stu.name}}
+    </li>
+  </ul>
+
+  <!-- 使用uppercase lowercase 字符串大小写的转换-->
+  <p>{{name}}</p>
+  <p>{{name | uppercase}}</p>
+  <p>{{name | lowercase}}</p>
+
+  <!-- limitTo 限定集合中显示的元素的个数-->
+  <ul>
+    <li ng-repeat="tmp in list | limitTo:2 ">
+      {{tmp}}
+    </li>
+  </ul>
+</div>
+
+<script>
+  var app = angular.module('myApp', ['ng']);
+
+  app.controller('myCtrl', function ($scope) {
+    $scope.price = 1234;
+    $scope.nowDate = new Date();
+
+    $scope.name = 'Michael';
+
+    $scope.stuList = [
+      {age:18,name:'zhangsan'},
+      {age:20,name:'zhangda'},
+      {age:19,name:'zhanger'}
+    ]
+
+    $scope.list = [100,200,300];
+
+  });
+</script>
+
+
+</body>
+</html>
