@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-  <script src="js/angular.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js"></script>
 </head>
 <body>
-
 <div ng-controller="myCtrl">
-
-  <p>{{100 | myFilter:'￥'}}</p>
-
+    <p>{{100 | myFilter:'￥'}}</p>
 </div>
-
 <script>
-  var app = angular.module('myApp', ['ng']);
-
-  //自定义过滤器
-  app.filter('myFilter', function () {
-    //过滤器的本质就是方法
-    return function (inputValue,arg1) {
-      return arg1+inputValue
-    }
-  });
-
-  app.controller('myCtrl', function () {
-    console.log('ok');
-  });
+    var app = angular.module('myApp', ['ng']);
+    //自定义过滤器
+    app.filter('myFilter', function () {
+        //过滤器的本质就是方法
+        return function (inputValue, arg1) {
+            return arg1 + inputValue
+        }
+    });
+    app.controller('myCtrl', function () {
+        console.log('ok');
+    });
 </script>
-
-
 </body>
 </html>

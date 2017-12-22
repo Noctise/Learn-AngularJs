@@ -122,7 +122,7 @@ $location/$http/$scope/$rootScope/$window/$interval/$timeout...
 面试题：$scope和$rootScope的关系
 
 ①每一个控制器对应的有一个$scope,每一个$scope都是相互隔离的
-②$scope的id是根据控制器的加载顺序是递增的，有共同的父元素$rootScope
+②$scope的id是根据控制器 的加载顺序是递增的，有共同的父元素$rootScope
 
 
 
